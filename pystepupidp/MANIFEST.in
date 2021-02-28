@@ -1,0 +1,2 @@
+recursive-include pystepupidp/templates *
+recursive-include pystepupidp/static *
