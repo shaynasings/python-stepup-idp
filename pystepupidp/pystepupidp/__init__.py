@@ -29,6 +29,9 @@ def create_app(test_config=None):
     # Configure logging using the configuration from the configuration file.
     dictConfig(app.config['LOGGING'])
 
+    from . import healthcheck
+    app.register_blueprint(healthcheck.bp)
+
     from . import saml
     app.register_blueprint(saml.bp)
 
