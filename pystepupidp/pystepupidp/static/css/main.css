@@ -1,1 +1,44 @@
-.top-buffer { margin-top:20px; }
+#totp-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-top: 1em solid #20558a;
+}
+#totp-content {
+  flex: 1;
+  max-width: 584px;
+  margin: auto;
+  padding: 3em;
+}
+#totp-content h1 {
+  margin: 0.5em 0 1em;
+  font-size: 2em;
+}
+#totp-content p {
+  margin-top: 2em;
+}
+#totp-form-wrapper form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 0.5em;
+  align-items: end;
+}
+#totp-form-wrapper .form-group {
+  margin-bottom: 0;
+}
+#submit.btn-default {
+  background-color: #20558a;
+  color: white;
+  border-color: #20558a;
+}
+#submit.btn-default:hover {
+  background-color: #414141;
+}
+#totp-footer {
+  padding: 1em;
+  border-bottom: 1px solid #20558a;
+  background-color: #414141;
+}
+#totp-footer img {
+  width: 212px;
+}

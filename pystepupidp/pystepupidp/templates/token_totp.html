@@ -1,6 +1,6 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}TOTP form{% endblock %}
+{% block title %}NIAID TOTP Form{% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -9,34 +9,32 @@
 
 {% block content %}
 
-<div class="container">
+<div id="totp-wrapper">
+  <main id="totp-content">
+    <h1>Enter your authentication app code</h1>
+        
+    <div id="totp-form-wrapper">
+      {{ wtf.quick_form(form) }}
+    </div>
+        
+    <p>
+      Enter the code from your authenticator app. If you have
+      several accounts set up in your app, enter the code 
+      corresponding to <strong>{{ name_id }}</strong> at
+      <strong>scienceforum.sc</strong>.
+    </p>
+  </main>
 
-<h1>Enter your authentication app code</h1>
-
-<div class="row">
-
-<div class="col-md-4">
-
-    {{ wtf.quick_form(form) }}
-
-</div>
-
-
-</div>
-
-<div class="row top-buffer">
-
-<div class="col-md-4">
-
-<p>Enter the code from your authenticator app. If you have
-several accounts set up in your app, enter the code 
-corresponding to <strong>{{ name_id }}</strong> at
-<strong>scienceforum.sc</strong></p>.
+  <footer id="totp-footer"> 
+    <img src="{{ url_for('static', filename='img/logo-niaid-white.svg') }}" alt="NIAID Logo"/>
+  </footer>
 
 </div>
 
-</div>
-
-</div>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("code").focus();
+  });
+</script>
 
 {% endblock %}
