@@ -8,7 +8,6 @@ setup(
     zip_safe=False,
     install_requires=[
         'flask',
-        'flask-bootstrap',
         'Flask-WTF',
         'gunicorn',
         'ldap3',

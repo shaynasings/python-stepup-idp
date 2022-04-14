@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
 from logging.config import dictConfig
 
 # Default initial logging instantiated before the Flask app reads
@@ -37,7 +36,5 @@ def create_app(test_config=None):
 
     from . import token
     app.register_blueprint(token.bp)
-
-    Bootstrap(app)
 
     return app
