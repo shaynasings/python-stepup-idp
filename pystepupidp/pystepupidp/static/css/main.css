@@ -2,7 +2,15 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  border-top: 1em solid #20558a;
+  background: white url("../img/background.jpg") no-repeat center;
+  background-size: cover;
+}
+#totp-header {
+  text-align: center;
+  color: white;
+  background-color: #20558a;
+  padding: 0.5em;
+  font-size: 1.2em;
 }
 #totp-content {
   flex: 1;
@@ -11,34 +19,49 @@
   padding: 3em;
 }
 #totp-content h1 {
-  margin: 0.5em 0 1em;
+  margin: 0 0 1rem;
   font-size: 2em;
 }
 #totp-content p {
-  margin-top: 2em;
-}
-#totp-form-wrapper form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 0.5em;
-  align-items: end;
+  margin-top: 4rem;
 }
 #totp-form-wrapper .form-group {
   margin-bottom: 0;
+}
+#totp-form-wrapper .control-label {
+  clear: both;
+  display: block;
+}
+#code {
+  font-size: 2em;
+  letter-spacing: 0.15em;
+  width: 6em;
+  height: 40px;
+  float: left;
+  margin-right: 0.5rem;
+  text-align: center;
+  color: green;
 }
 #submit.btn-default {
   background-color: #20558a;
   color: white;
   border-color: #20558a;
+  height: 40px;
 }
 #submit.btn-default:hover {
   background-color: #414141;
 }
 #totp-footer {
-  padding: 1em;
+  padding: 2em 3em;
   border-bottom: 1px solid #20558a;
   background-color: #414141;
+  color: #ccc;
+  font-size: 0.9em;
 }
 #totp-footer img {
   width: 212px;
+}
+#totp-footer p {
+  max-width: 584px;
+  margin: auto;
 }
