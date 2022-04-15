@@ -14,6 +14,13 @@
         <h1>Enter your authenticator app code</h1>
             
         <div id="totp-form-wrapper">
+          {%- if form.errors %}
+            {%- for fieldname, errors in form.errors.items() %}
+              {%- for error in errors %}
+                <p class="error">{{error}}</p>
+              {%- endfor %}
+            {%- endfor %}
+          {%- endif %}
           <form action="" method="POST">
             {{ form.csrf_token }}
             <div class="form-group  required"><label class="control-label" for="code">One-time security code</label>
