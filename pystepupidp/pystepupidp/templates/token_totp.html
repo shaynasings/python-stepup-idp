@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>NIAID TOTP Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,23 +14,25 @@
         <h1>Enter your authenticator app code</h1>
             
         <div id="totp-form-wrapper">
-          {%- if form.errors %}
-            {%- for fieldname, errors in form.errors.items() %}
-              {%- for error in errors %}
-                <p class="error">{{error}}</p>
-              {%- endfor %}
-            {%- endfor %}
-          {%- endif %}
           <form action="" method="POST">
             {{ form.csrf_token }}
-            <div class="form-group  required"><label class="control-label" for="code">One-time security code</label>
-              <input class="form-control" id="code" maxlength="6" minlength="6" name="code" required="" type="text" value="">
+            <div class="form-group  required">
+              <label class="control-label" for="code">One-time security code</label>
+              <input class="form-control" id="code" maxlength="6" minlength="6" name="code" required type="text" value="">
             </div>
             <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
+            {# There's only one form element, so just output all errors here. #}
+            {%- if form.errors %}
+              {%- for fieldname, errors in form.errors.items() %}
+                {%- for error in errors %}
+                  <p class="error">{{error}}</p>
+                {%- endfor %}
+              {%- endfor %}
+            {%- endif %}
           </form>
         </div>
             
-        <p>
+        <p class="info">
           Enter the code from your authenticator app. If you have
           several accounts set up in your app, enter the code 
           corresponding to <strong>{{ name_id }}</strong> at
