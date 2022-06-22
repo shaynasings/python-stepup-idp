@@ -1,3 +1,16 @@
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  color: #333;
+  background-color: white;
+}
 #totp-wrapper {
   display: flex;
   flex-direction: column;
@@ -21,9 +34,11 @@
 #totp-content h1 {
   margin: 0 0 1rem;
   font-size: 2em;
+  font-weight: 500;
+  line-height: 1.1em;
 }
-#totp-content p {
-  margin-top: 4rem;
+#totp-content p.info {
+  margin-top: 3rem;
 }
 #totp-form-wrapper .form-group {
   margin-bottom: 0;
@@ -31,6 +46,8 @@
 #totp-form-wrapper .control-label {
   clear: both;
   display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
 }
 #code {
   font-size: 2em;
@@ -51,6 +68,13 @@
 #submit.btn-default:hover {
   background-color: #414141;
 }
+#totp-form-wrapper p.error {
+  padding: 1em;
+  background-color: #fdd;
+  border-radius: 4px;
+  border: 1px solid #fcc;
+  font-size: 1.2em;
+}
 #totp-footer {
   padding: 2em 3em;
   border-bottom: 1px solid #20558a;
@@ -64,4 +88,52 @@
 #totp-footer p {
   max-width: 584px;
   margin: auto;
+}
+/* BOOTSTRAPISMS */
+/* These are not exactly Bootstrap styles, but they borrow class names and are similar */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: green;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+.btn {
+  display: inline-block;
+  height: 40px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }

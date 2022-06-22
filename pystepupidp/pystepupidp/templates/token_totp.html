@@ -1,53 +1,64 @@
-{% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block title %}NIAID TOTP Form{% endblock %}
-
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-{% endblock %}
-
-{% block content %}
-
-<div id="totp-wrapper">
-  <header id="totp-header">
-    NIAID Discovery and Collaboration Platform
-  </header>
-  
-  <main id="totp-content">
-    <h1>Enter your authenticator app code</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NIAID TOTP Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+    <div id="totp-wrapper">
+      <header id="totp-header">
+        NIAID Discovery and Collaboration Platform
+      </header>
+      <main id="totp-content">
+        <h1>Enter your authenticator app code</h1>
+            
+        <div id="totp-form-wrapper">
+          <form action="" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-group  required">
+              <label class="control-label" for="code">One-time security code</label>
+              <input class="form-control" id="code" maxlength="6" minlength="6" name="code" required type="text" value="">
+            </div>
+            <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
+            {# There's only one form element, so just output all errors here. #}
+            {%- if form.errors %}
+              {%- for fieldname, errors in form.errors.items() %}
+                {%- for error in errors %}
+                  <p class="error">{{error}}</p>
+                {%- endfor %}
+              {%- endfor %}
+            {%- endif %}
+          </form>
+        </div>
+            
+        <p class="info">
+          Enter the code from your authenticator app. If you have
+          several accounts set up in your app, enter the code 
+          corresponding to <strong>{{ name_id }}</strong> at
+          <strong>scienceforum.sc</strong>.
+        </p>
+      </main>
     
-    <div id="totp-form-wrapper">
-      {{ wtf.quick_form(form) }}
+      <footer id="totp-footer">
+        <p>
+          You are accessing a U.S. Government web site which may contain information that must be protected
+          under the U.S. Privacy Act or other sensitive information and is intended for Government authorized
+          use only. Unauthorized attempts to upload information, change information, or use of this web site may
+          result in disciplinary action, civil, and/or criminal penalties. Unauthorized users of this web site
+          should have no expectation of privacy regarding any communications or data processed by this web site.
+          Anyone accessing this web site expressly consents to monitoring of their actions and all communication
+          or data transitioning or stored on or related to this web site and is advised that if such monitoring
+          reveals possible evidence of criminal activity, NIH may provide that evidence to law enforcement officials.
+        </p>
+      </footer>
+    
     </div>
-        
-    <p>
-      Enter the code from your authenticator app. If you have
-      several accounts set up in your app, enter the code 
-      corresponding to <strong>{{ name_id }}</strong> at
-      <strong>scienceforum.sc</strong>.
-    </p>
-  </main>
 
-  <footer id="totp-footer">
-    <p>
-      You are accessing a U.S. Government web site which may contain information that must be protected 
-      under the U.S. Privacy Act or other sensitive information and is intended for Government authorized 
-      use only. Unauthorized attempts to upload information, change information, or use of this web site may 
-      result in disciplinary action, civil, and/or criminal penalties. Unauthorized users of this web site 
-      should have no expectation of privacy regarding any communications or data processed by this web site. 
-      Anyone accessing this web site expressly consents to monitoring of their actions and all communication 
-      or data transitioning or stored on or related to this web site and is advised that if such monitoring 
-      reveals possible evidence of criminal activity, NIH may provide that evidence to law enforcement officials.
-    </p>
-  </footer>
-
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("code").focus();
-  });
-</script>
-
-{% endblock %}
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById("code").focus();
+      });
+    </script>
+  </body>
+</html>
