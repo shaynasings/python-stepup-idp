@@ -49,7 +49,8 @@ body {
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-#code {
+#code, 
+#tancode {
   font-size: 2em;
   letter-spacing: 0.15em;
   width: 6em;
@@ -58,6 +59,9 @@ body {
   margin-right: 0.5rem;
   text-align: center;
   color: green;
+}
+#tancode {
+  width: 14em;
 }
 #submit.btn-default {
   background-color: #20558a;
