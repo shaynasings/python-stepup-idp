@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>NIAID TOTP Form</title>
+    <title>NIAID TAN (backup code) Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   </head>
   <body>
-    <div id="totp-wrapper">
-      <header id="totp-header">
+    <div id="tan-wrapper">
+      <header id="tan-header">
         NIAID Discovery and Collaboration Platform
       </header>
-      <main id="totp-content">
-        <h1>Enter your authenticator app code</h1>
+      <main id="tan-content">
+        <h1>Enter one of your backup codes</h1>
             
-        <div id="totp-form-wrapper">
+        <div id="tan-form-wrapper">
           <form action="" method="POST">
             {{ form.csrf_token }}
             <div class="form-group  required">
-              <label class="control-label" for="code">One-time security code</label>
-              <input class="form-control" id="code" maxlength="6" minlength="6" name="code" required type="text" value="">
+              <label class="control-label" for="tancode">One-time security backup code</label>
+              <input class="form-control" id="tancode" maxlength="30" minlength="6" name="tancode" required type="text" value="">
             </div>
-            <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
+            <input class="btn btn-default" id="tansubmit" name="tansubmit" type="submit" value="Submit">
             {# There's only one form element, so just output all errors here. #}
             {%- if form.errors %}
               {%- for fieldname, errors in form.errors.items() %}
@@ -33,16 +33,10 @@
         </div>
             
         <p class="info">
-          Enter the code from your authenticator app. If you have
-          several accounts set up in your app, enter the code 
-          corresponding to <strong>{{ name_id }}</strong> at
-          <strong>scienceforum.sc</strong>.
+          Enter a backup code for  <strong>{{ name_id }}</strong> at
+          <strong>scienceforum.sc</strong>. Codes may only be used once,
+          so you may want to delete or cross out the code after use.
         </p>
-
-        <p>
-          If you need to use a backup code instead, click the link below.
-        </p>
-        <a href="{{ url_for('token.token_tan') }}">Use Backup Code</a> 
       </main>
     
       <footer id="totp-footer">

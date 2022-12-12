@@ -54,7 +54,7 @@ def validate_totp_input(form, field):
     if not validation_response['result']['value']['auth']:
         raise ValidationError('Wrong code')
 
-    logger.info("TOTP token successfully validated")
+    logger.info("token successfully validated")
 
 
 class TotpInputForm(FlaskForm):
@@ -66,6 +66,15 @@ class TotpInputForm(FlaskForm):
                        )
     submit = SubmitField('Submit')
 
+
+class TanInputForm(FlaskForm):
+    tancode = StringField('One-time backup code',
+                       validators=[DataRequired(),
+                                   Length(min=6, max=30),
+                                   validate_totp_input
+                                   ]
+                       )
+    tansubmit = SubmitField('Submit')
 
 bp = Blueprint('token', __name__, url_prefix='/token')
 
@@ -95,3 +104,16 @@ def token_totp():
         return redirect(url_for('saml.send_assertion'))
 
     return render_template('token_totp.html', form=form, name_id=name_id)
+
+@bp.route('/tan', methods=('GET', 'POST'))
+def token_tan():
+    form = TanInputForm()
+    name_id = session['name_id']
+
+    if form.validate_on_submit():
+        session['mfa_auth'] = True
+        return redirect(url_for('saml.send_assertion'))
+
+    return render_template('token_tan.html', form=form, name_id=name_id)
+
+
